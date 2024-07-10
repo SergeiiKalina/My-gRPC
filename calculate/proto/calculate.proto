@@ -1,0 +1,45 @@
+syntax = "proto3";
+
+package calculate;
+
+
+message CalculateRequest {
+    int32 numberOne = 1;
+    int32 numberTwo = 2;
+}
+
+message CalculateResponse {
+    int32 sum = 1;
+    
+}
+
+message AverageRequest{
+    int32 number = 1; 
+}
+message AverageResponse{
+    double result = 1; 
+}
+
+message MaxNumberRequest {
+    int32 number = 1;
+}
+
+message MaxNumberResponse {
+    double result = 1; 
+}
+
+message SqrtRequest {
+   int32 number = 1; 
+}
+
+message SqrtResponse {
+    double result = 1;
+}
+
+service CalculateService{
+    rpc Calculate(CalculateRequest) returns (CalculateResponse);
+    rpc Algorithm (CalculateRequest) returns (stream CalculateResponse);
+    rpc Average (stream AverageRequest) returns (AverageResponse);
+    rpc MaxNumber (stream MaxNumberRequest) returns (stream MaxNumberResponse);
+    rpc Sqrt (SqrtRequest) returns (SqrtResponse);
+}
